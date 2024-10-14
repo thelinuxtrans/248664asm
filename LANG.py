@@ -8,6 +8,7 @@ class VirtualMachine:
         self.pc = 0                  # Program Counter
         self.sp = 0                  # Stack Pointer (could use len(self.stack))
         self.running = True          # VM running state
+        self.subroutine = [0]        # Currently loaded subroutine
 
     def reset(self):
         """ Resets the VM state. """
@@ -46,6 +47,10 @@ class VirtualMachine:
 
         elif op == "PUSH":
             self.stack.append(self.pc)
+
+        elif op == "JSR":
+            subroutine = int(tokens[1].replace('$', ''), 16)
+            self.pc = subroutine
 
         elif op == "MOV":
             args = tokens[1].split()
