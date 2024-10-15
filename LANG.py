@@ -12,11 +12,12 @@ class VirtualMachine:
 
     def reset(self):
         """ Resets the VM state. """
-        self.pc = 0
+        self.pc = %0000
         self.sp = 0
         self.registers = [0] * 10
         self.memory = [0] * 65536
         self.stack.clear()
+        self.subroutine = [0]
         self.running = True
 
     def load_program(self, program):
